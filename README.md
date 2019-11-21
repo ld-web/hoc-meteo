@@ -14,3 +14,7 @@ On voudra :
 
 - Vous travaillerez le design de votre application pour essayer d'assurer la meilleure expérience utilisateur possible
 - Vous déposerez votre projet dans un dépôt Git, afin qu'il soit possible de le cloner, l'installer et l'exécuter facilement
+
+## Configuration
+
+> Créer un fichier .env.local et y ajouter la variable `REACT_APP_API_KEY`
