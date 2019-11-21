@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Axios from "axios";
 import Header from "./Header";
 import Weather from "./Weather/Weather";
+import Search from "./Search";
 
 class App extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class App extends Component {
     // Initialisation du state
     // Avant même l'affichage du composant
     this.state = {
+      searchTerm: "",
       city: "",
       icon: "",
       temperature: "",
@@ -65,12 +67,24 @@ class App extends Component {
     //   .then(jsonContent => console.log(jsonContent));
   };
 
+  updateSearchValue = (e) => {
+    const searchTerm = e.target.value;
+    this.setState({
+      searchTerm: searchTerm
+    });
+  }
+
+  search = (e) => {
+    alert("Je vais rechercher " + this.state.searchTerm);
+  }
+
   render = () => {
     const { city, icon, temperature, status } = this.state;
 
     return (
       <>
         <Header />
+        <Search handleSubmit={this.search} searchValue={this.state.searchTerm} updateValue={this.updateSearchValue} />
         <Weather loading={this.state.loading} city={city} icon={icon} status={status} temperature={temperature} />
       </>
     );
