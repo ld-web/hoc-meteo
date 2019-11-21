@@ -5,7 +5,9 @@ import Temperature from "./Temperature";
 import "./Weather.scss";
 import { DoubleBounce } from "better-react-spinkit";
 
-const Weather = ({ city, icon, temperature, status, loading }) => {
+const Weather = ({ display, city, icon, temperature, status, loading }) => {
+  if (!display) return <div></div>;
+
   if (loading) {
     return <div className="mt-3 d-flex justify-content-center">
       <DoubleBounce size={60} color="#CCC" />
