@@ -5,7 +5,7 @@ import App from './components';
 import * as serviceWorker from './serviceWorker';
 import "bootstrap";
 
-ReactDOM.render(<App bgColor="#0F0" />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

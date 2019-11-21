@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
+import Header from "./Header";
+import Weather from "./Weather/Weather";
 
 class App extends Component {
   constructor(props) {
@@ -22,7 +24,7 @@ class App extends Component {
 
     this.setState({
       city: data.name,
-      icon: data.weather[0].icon,
+      icon: data.weather[0].id,
       temperature: data.main.temp,
       status: data.weather[0].description,
       loading: false
@@ -31,17 +33,19 @@ class App extends Component {
     // .then(res => console.log("Ma data dans then de componentDidMount", res.data))
     // .catch(err => console.log("Une erreur a été remontée par le rejet de la promesse", err));
     // console.log("Ma variable res", res);
-  }
+  };
 
   getData = async () => {
     try {
+      console.log("API KEY", process.env.REACT_APP_API_KEY);
       const response = await Axios.get(
-        "https://api.openweathermap.org/data/2.5/weather?q=London&APPID=a42440fccba80afd3945199f9f599063&lang=fr&units=metric");
+        `https://api.openweathermap.org/data/2.5/weather?q=London&APPID=${process.env.REACT_APP_API_KEY}&lang=fr&units=metric`
+      );
 
       console.log("Ma data dans getData", response.data);
 
       return response.data;
-    } catch(err) {
+    } catch (err) {
       console.log("Une erreur est survenue", err);
     }
     // Méthode avec Axios :
@@ -63,18 +67,12 @@ class App extends Component {
 
   render = () => {
     const { city, icon, temperature, status } = this.state;
-    const { bgColor } = this.props;
 
     return (
-      <div className="container" style={{backgroundColor: bgColor}}>
-        <h1 className="text-center">Weather App</h1>
-        <div>
-          <p>Ville : {city}</p>
-          <p>Icône : {icon}</p>
-          <p>Température : {temperature}</p>
-          <p>Description : {status}</p>
-        </div>
-      </div>
+      <>
+        <Header />
+        <Weather loading={this.state.loading} city={city} icon={icon} status={status} temperature={temperature} />
+      </>
     );
   };
 }
