@@ -23,7 +23,7 @@ const Weather = ({ display, city, icon, temperature, status, loading }) => {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-8 col-md-4 col-lg-3 m-auto">
+        <div className="col-8 col-md-5 col-lg-4 col-xl-3 m-auto">
           <div className="card shadow mt-3 weather-card">
             <div className="card-header text-center">
               <h2>{city}</h2>
@@ -32,6 +32,11 @@ const Weather = ({ display, city, icon, temperature, status, loading }) => {
             <div className="card-body">
               <Icon icon={icon} />
               <Temperature value={temperature} />
+            </div>
+            <div className="card-footer text-center">
+              <a href={`/forecast/${city}`} className="btn btn-primary">
+                Voir les prévisions
+              </a>
             </div>
           </div>
         </div>
