@@ -12,6 +12,7 @@ class App extends Component {
     // Avant même l'affichage du composant
     this.state = {
       searchTerm: "",
+      error: "",
       city: "",
       icon: "",
       temperature: "",
@@ -30,7 +31,7 @@ class App extends Component {
   };
 
   enterKeySearch = e => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       this.search(e);
     }
   };
@@ -38,20 +39,30 @@ class App extends Component {
   search = async e => {
     this.setState({ displayWeatherCard: true, loading: true });
     console.log("Mon terme de recherche est : ", this.state.searchTerm);
-    const data = await getWeatherData(this.state.searchTerm);
 
-    console.log("Mes données dans search", data);
+    try {
+      const data = await getWeatherData(this.state.searchTerm);
 
-    setTimeout(() => {
+      console.log("Mes données dans search", data);
+
+      setTimeout(() => {
+        this.setState({
+          city: data.name,
+          icon: data.weather[0].id,
+          temperature: data.main.temp,
+          status: data.weather[0].description,
+          loading: false,
+          displayWeatherCard: true,
+          error: ""
+        });
+      }, 1400);
+    } catch (err) {
       this.setState({
-        city: data.name,
-        icon: data.weather[0].id,
-        temperature: data.main.temp,
-        status: data.weather[0].description,
         loading: false,
-        displayWeatherCard: true
+        displayWeatherCard: false,
+        error: err.response.data.message
       });
-    }, 1400);
+    }
   };
 
   render = () => {
@@ -61,6 +72,7 @@ class App extends Component {
       <>
         <Header />
         <Search
+          error={this.state.error}
           handleSubmit={this.search}
           searchValue={this.state.searchTerm}
           updateValue={this.updateSearchValue}
