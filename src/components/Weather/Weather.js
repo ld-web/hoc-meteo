@@ -5,6 +5,12 @@ import Temperature from "./Temperature";
 import "./Weather.scss";
 import { DoubleBounce } from "better-react-spinkit";
 
+// Composant fonctionnel
+// Il reçoit UN argument qu'on éclate en plusieurs variables avec la syntaxe de décomposition
+// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Op%C3%A9rateurs/Affecter_par_d%C3%A9composition
+// Ce composant n'a aucun état
+// Il ne fait que recevoir des propriétés
+// Et les affiche
 const Weather = ({ display, city, icon, temperature, status, loading }) => {
   if (!display) return <div></div>;
 
