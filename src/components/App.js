@@ -37,6 +37,7 @@ class App extends Component {
 
   search = async e => {
     this.setState({ displayWeatherCard: true, loading: true });
+    console.log("Mon terme de recherche est : ", this.state.searchTerm);
     const data = await getWeatherData(this.state.searchTerm);
 
     console.log("Mes données dans search", data);
@@ -64,6 +65,7 @@ class App extends Component {
           searchValue={this.state.searchTerm}
           updateValue={this.updateSearchValue}
           handleKeyDown={this.enterKeySearch}
+          textPlaceholder="Rechercher une ville..."
         />
         <Weather
           loading={this.state.loading}

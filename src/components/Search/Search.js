@@ -1,6 +1,6 @@
 import React from "react";
 
-const Search = ({ searchValue, handleSubmit, handleKeyDown, updateValue }) => {
+const Search = ({ textPlaceholder, searchValue, handleSubmit, handleKeyDown, updateValue }) => {
   return (
     <div className="container mt-3 mb-3">
       <div className="row">
@@ -11,7 +11,7 @@ const Search = ({ searchValue, handleSubmit, handleKeyDown, updateValue }) => {
             value={searchValue}
             onChange={updateValue}
             onKeyDown={handleKeyDown}
-            placeholder="Rechercher une ville..."
+            placeholder={textPlaceholder}
           />
         </div>
       </div>
