@@ -19,6 +19,7 @@ class App extends Component {
             </Switch>
           </div>
         </Router>
+        <div className="mt-4"></div>
       </>
     );
   };
