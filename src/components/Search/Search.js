@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../Utils/Button";
 
 const Search = ({
   error,
@@ -39,9 +40,11 @@ const Search = ({
       {errorDiv}
       <div className="row">
         <div className="col text-center mt-2">
-          <button onClick={handleSubmit} className="btn btn-dark">
-            Rechercher
-          </button>
+          <Button
+            handleClick={handleSubmit}
+            type="dark"
+            textContent="Rechercher"
+          />
         </div>
       </div>
     </div>
